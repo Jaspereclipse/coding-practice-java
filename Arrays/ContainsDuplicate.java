@@ -36,13 +36,13 @@ public class ContainsDuplicate {
         long d = (long) t + 1;
         for (int i=0; i<nums.length; i+=1){
             long mappedNum = (long) nums[i] - Integer.MIN_VALUE;
-            long key = mappedNum / (d);
+            long key = mappedNum / d;
             if (map.containsKey(key) ||
                     map.containsKey(key + 1) && map.get(key + 1) - mappedNum <= t ||
                     map.containsKey(key - 1) && mappedNum - map.get(key - 1) <= t)
                 return true;
             if (map.size() >= k){
-                long lastKey = ((long) nums[i-k] - Integer.MIN_VALUE) / (d);
+                long lastKey = ((long) nums[i-k] - Integer.MIN_VALUE) / d;
                 map.remove(lastKey);
             }
             map.put(key, mappedNum);
